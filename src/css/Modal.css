@@ -1,0 +1,54 @@
+/* 모달 배경 오버레이 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* 모달 컨텐츠 박스 */
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+/* 모달 제목 */
+.modal-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: black;
+}
+
+/* 모달 본문 내용 */
+.modal-body {
+    margin: 20px 0;
+    font-size: 1rem;    
+    color: #555;
+}
+
+/* 닫기 버튼 */
+.modal-close {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.modal-close:hover {
+    background-color: #0056b3;
+}

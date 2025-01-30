@@ -1,0 +1,74 @@
+.board-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .board-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .board-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .board-table th,
+  .board-table td {
+    border: 1px solid #555;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .board-table th {
+    background-color: #444;
+  }
+  
+  .board-table tr:nth-child(even) {
+    background-color: #3a3a3a;
+  }
+  
+  .board-table tr:hover {
+    background-color: #555;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+  }
+  
+  .pagination span {
+    padding: 5px 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .pagination span.active {
+    background-color: #444;
+    color: #fff;
+  }
+  
+  .pagination span.next {
+    background-color: #666;
+    color: #fff;
+  }
+  
+  .pagination span.prev {
+    background-color: #666;
+    color: #fff;
+  }
+  .pagination span:hover {
+    background-color: #555;
+  }
+  
