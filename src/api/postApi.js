@@ -33,6 +33,7 @@ export const getArticle = async (id) => {
 export const postArticle = async (article) => {
 
     //  자바스크립트 객체 -> JSON 문자열 변환이 필요한데 axio 기본 지원
+    // Content-Type: application/json
     
     const result = await axios.post(`${prefix}/posts`, article)
     
