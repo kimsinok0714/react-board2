@@ -18,7 +18,7 @@ const BoardModify = () => {
     */
     // 구조 분해 할당(destructuring assignment)을 사용해 no라는 키의 값을 변수로 추출한 것입니다.
 
-    const { no, page, size } = useParams(); 
+    const { no } = useParams(); 
 
     // 객체 복사 : 
     // 원본 객체가 불변성(immutability)을 유지하도록 보장하기 위해서입니다.
