@@ -5,9 +5,11 @@ import { useCustomMove } from "../hooks/useCustomMove";
 import ResultModal from './common/ResultModal';
 
 const initialState = {
+    no: 0,
     title: '',
     contents: '',
-    writer: ''
+    writer: '',
+    regDate: ''
 }
 
 
@@ -64,10 +66,8 @@ const BoardModify = () => {
         } else if (article.writer === '') {
             alert('작성자를 입력하세요')
         } else {
-            if (confirm('Would you like to edit the post?')) {
+            if (confirm('Would you like to edit the post?')) {              
                 
-                article.no = no;
-
                 putArticle(article)
                     .then(data => {                        
                         setResult('Modified');                            
