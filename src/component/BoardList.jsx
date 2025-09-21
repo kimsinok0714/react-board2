@@ -92,8 +92,8 @@ const BoardList = () => {
     // 검색 버튼 선택
     const handleClickSearch = () => {
        
-
-        getSearchPostList({ page, size, keyfield, keyword })
+        // 새로운 검색이므로 1페이지부터 시작
+        getSearchPostList({ page: 1, size, keyfield, keyword })
             .then(data => {
                 setServerData(data); // 리액트는 상태가 변경되면 화면을 리렌더링한다.
             })
