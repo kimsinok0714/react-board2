@@ -1,102 +1,83 @@
 
-import { useNavigate, useSearchParams, createSearchParams } from  'react-router-dom'
+import { useNavigate, createSearchParams, useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 
 
-const getNum = (param, defaultValue) => {
+// 페이지 이동 : 로직 재사용
+export function useCustomMove() {
 
-    if (!param) {
-        return defaultValue;
-    }
+    // state
+    const [ refresh, setRefresh ] = useState(false);
 
-    return parseInt(param);
-
-}
-
-
-
-// 페이지 이동 : 재사용
-export const useCustomMove = () => {
-
+    // 페이지 이동
     const navigate = useNavigate();
 
     const [ searchParams, setSearchParams ] = useSearchParams();
 
-    const page = getNum(searchParams.get('page'), 1);
+    const page = parseInt(searchParams.get('page')) || 1;
 
-    const size = getNum(searchParams.get('size'), 10);
-
+    const size = parseInt(searchParams.get('size')) || 10;
+    
     const keyfield = searchParams.get('keyfield');
 
     const keyword = searchParams.get('keyword');
 
-    const [ refresh , setRefresh ] = useState(false);
 
+    // 이 로직은 게시글 목록 페이지에서 페이징과 검색 기능을 지원하기 위한 URL 쿼리 문자열을 동적으로 생성합니다. 
+    // 1. 검색 파라미터가 있는 경우:
+    //    - page, size, keyfield, keyword 모든 파라미터를 포함한 쿼리 문자열 생성한다.
+    // 2. 검색 파라미터가 없는 경우:
+    //    - 기본적인 page와 size 파라미터만 포함한 쿼리 문자열 생성한다.    
 
-    let queryDefault  = '';
-
+    let queryDefault = '';
     if (keyfield != null && keyword != null) {
         queryDefault = createSearchParams({ page, size, keyfield, keyword }).toString();
-    } else {
+    } else { 
         queryDefault = createSearchParams({ page, size }).toString();
     }
-    
-    
-    
+
+
     // 게시글 목록 조회 페이지 이동
-    const moveToList = (pageParam) => {
+    const moveToList = (pageParams) => {
 
-        console.log('pageParam : ', pageParam); // { page: 1 }
-        
+        console.log('pageParams : ', pageParams);
+
         let queryStr = '';
-
-        if (pageParam) {
-
-            console.log('pageParam : ', pageParam);
-
-            const pageNum = getNum(pageParam.page, 1);            
-            const sizeNum = getNum(pageParam.size, 10);            
-            const keyfield = pageParam.keyfield;    
-            const keyword = pageParam.keyword;
-
+        if (pageParams) {
+            const page = parseInt(pageParams.page) || 1;
+            const size = parseInt(pageParams.size) || 10;
+            const keyfield = pageParams.keyfield;
+            const keyword = pageParams.keyword;
 
             if (keyfield && keyword) {
-                queryStr = createSearchParams({page: pageNum, size: sizeNum, keyfield: keyfield, keyword: keyword}).toString();
+                queryStr = createSearchParams({page, size, keyfield, keyword}).toString();
             } else {
-                queryStr = createSearchParams({page: pageNum, size: sizeNum}).toString();
+                queryStr = createSearchParams({page, size}).toString();
             }
-        
-
         } else {
             queryStr = queryDefault;
-        }  
+        }
 
         setRefresh(!refresh);
 
         console.log('queryStr : ', queryStr);
 
-        navigate({ pathname: '../list', search: queryStr })  // URL query String 이 변경된다.
+        // 동시에 URL에 쿼리 파라미터를 추가합니다
+        // /list?page=1&size=10&keyfield=writer&keyword=kso
+        navigate(`/list?${queryStr}`);
     }
 
-
-    // 게시글 수정 페이지 이동
-    const moveToModify = (id) => {      // post.id 전달
-        
-        navigate({ pathname: `../modify/${id}`, search: queryDefault });
+    //게시글 수정 페이지 이동
+    const moveToModify = (id) => {       
+        navigate(`/modify/${id}?${queryDefault}`);
     }
 
-
-
-    // 게시글 상세조회 페이지 이동
+     //게시글 상세 패이지 이동
     const moveToView = (id) => {
-        
-        navigate({ pathname: `../view/${id}`, search: queryDefault});
+        navigate(`/view/${id}?${queryDefault}`); 
     }
-
-
 
     return { moveToList, moveToModify, moveToView, page, size, keyfield, keyword }
-
 
 
 }
