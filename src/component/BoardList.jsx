@@ -31,10 +31,9 @@ const BoardList = () => {
 
     const [ keyword, setKeyword ]  = useState('');
 
-    const { moveToList, moveToModify, moveToView, page, size } = useCustomMove();  //  page = 1, size = 10
-    
+   const { moveToList, page, size } = useCustomMove();  // page = 1, size = 10
 
-    useEffect( () => {    
+   useEffect( () => {    
 
         const keyfieldParam = searchParams.get("keyfield") || '';
         
