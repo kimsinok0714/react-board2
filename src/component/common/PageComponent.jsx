@@ -6,7 +6,7 @@ const PageComponent = ({ serverData, searchCondition, movePage }) => {  // Props
 
     const { keyfield, keyword } = searchCondition;
 
-    // movePage = '/list?page=1&size=10&keyfield=writer&keyword=kso'
+    // movePage = moveList  : '/list?page=1&size=10&keyfield=writer&keyword=kso'
 
     // serverData.prev, pageNumList, next ...
 
@@ -18,7 +18,7 @@ const PageComponent = ({ serverData, searchCondition, movePage }) => {  // Props
 
             {
                 serverData.pageNumList.map( (pageNum) => {
-                    
+                                                                //'/list?page={pageNum}&size=10&keyfield={keyfield}&keyword={keyword}'
                     return <span key={pageNum} onClick={() => { movePage( { page: pageNum, keyfield: keyfield, keyword: keyword } ) }} 
                                 style={{
                                 color: pageNum == serverData.currentPage ? 'blue' : 'white',
