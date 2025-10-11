@@ -2,12 +2,11 @@ import '../../css/Article.css';
 
 
 
-const PageComponent = ({ serverData, searchCondition, movePage }) => {  // Props 
+const PageComponent = ({ serverData, searchCondition, movePage }) => {  // Props
 
     const { keyfield, keyword } = searchCondition;
 
-
-    // movePage : moveToList
+    // movePage = '/list?page=1&size=10&keyfield=writer&keyword=kso'
 
     // serverData.prev, pageNumList, next ...
 
