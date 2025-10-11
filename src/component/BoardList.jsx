@@ -42,41 +42,34 @@ const BoardList = () => {
 
    useEffect( () => {    
 
-        const keyfieldParam = searchParams.get("keyfield") || '';
-        
+        const keyfieldParam = searchParams.get("keyfield") || '';     
+       
         const keywordParam = searchParams.get("keyword") || '';
         
-        if (keyfieldParam !== '' && keywordParam !== '') { 
-                     
+        if (keyfieldParam !== '' && keywordParam !== '') {                      
             getSearchPostList({ page, size, keyfield: keyfieldParam, keyword: keywordParam })
-                .then(data => {
-                    setServerData(data);          
-                })
-                .catch(error => {
-                    console.error("Error : ", error);
-                })           
-            
-            
-            setKeyfield(keyfieldParam);
-
+                    .then(data => {
+                        setServerData(data);          
+                    })
+                    .catch(error => {
+                        console.error("Error : ", error);
+                    })           
+                        
+            setKeyfield(keyfieldParam);            
             setKeyword(keywordParam);
-
         
-        }  else {            
-         
+        }  else {          
             getSearchPostList({ page, size, keyfield, keyword })
-                .then(data => {
-                    setServerData(data);          
-                })
-                .catch(error => {
-                    console.error("Error : ", error);
-                })
-
+                    .then(data => {
+                        setServerData(data);          
+                    })
+                    .catch(error => {
+                        console.error("Error : ", error);
+                    })
         }         
       
 
     }, [ page, size])
-
 
 
     const handleChanageKeyfield = (e) => {       
