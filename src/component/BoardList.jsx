@@ -32,6 +32,12 @@ const BoardList = () => {
     const [ keyword, setKeyword ]  = useState('');
 
    const { moveToList, page, size } = useCustomMove();  // page = 1, size = 10
+
+    // const [ searchParams, setSearchParams ] = useSearchParams();
+
+    // const page = parseInt(searchParams.get('page')) || 1;  // parseInt(searchParams.get('page')) falsy 값일 경우 1 설정정
+
+    // const size = parseInt(searchParams.get('size')) || 10;
     
 
    useEffect( () => {    
@@ -138,7 +144,8 @@ const BoardList = () => {
                             serverData.dtoList.map((post, index) => {                          
 
                                 return <tr key={post.id}>
-                                    <td>{((page - 1) * size) + index + 1}</td>
+                                    {/* <td>{((page - 1) * size) + index + 1}</td> */}
+                                    <td></td>{totalCount - ((page - 1) * size) - index}</td>
                                     <td onClick={() => moveToView(post.id)} style={{cursor: 'pointer'}}>{post.title}</td>
                                     <td>{post.writer}</td>
                                     <td>{post.regDate}</td>
