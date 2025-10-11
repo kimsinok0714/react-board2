@@ -148,7 +148,8 @@ const BoardList = () => {
                     </tbody>
                 </table>
             </div>
-
+        
+             // moveToList :   '/list?page=1&size=10&keyfield=writer&keyword=kso'
             <PageComponent serverData={ serverData }  searchCondition= { { keyfield, keyword } } movePage={ moveToList }></PageComponent>
         
         </>
