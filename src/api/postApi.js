@@ -60,7 +60,6 @@ export const getSearchPostList = async ({ page, size, keyfield, keyword }) => {
     // axios가 URL 인코딩을 자동 처리
     // URL 인코딩 : URL에 특수문자나 한글 등이 포함되면 웹에서 안전하게 전송하기 위해 인코딩이 필요합니다.
     const result = await axios.get(`${prefix}/posts`, { params: { page, size, keyfield, keyword }});
-
     return result.data;
 
 }
