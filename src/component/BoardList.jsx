@@ -5,6 +5,7 @@ import PageComponent from './common/PageComponent';
 import { useSearchParams } from "react-router-dom";
 import '../css/Article.css';
 
+
 const initialState = {
     dtoList: [],
     pageRequestDto: null,
@@ -31,6 +32,7 @@ const BoardList = () => {
     const [ keyword, setKeyword ]  = useState('');
 
    const { moveToList, page, size } = useCustomMove();  // page = 1, size = 10
+    
 
    useEffect( () => {    
 
