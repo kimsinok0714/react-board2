@@ -2,9 +2,8 @@ import { useEffect, useState, useRef } from "react";
 import { useCustomMove } from '../hooks/useCustomMove';
 import { getSearchPostList } from '../api/postApi';
 import PageComponent from './common/PageComponent';
-import '../css/Article.css';
 import { useSearchParams } from "react-router-dom";
-
+import '../css/Article.css';
 
 const initialState = {
     dtoList: [],
