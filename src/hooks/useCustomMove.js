@@ -3,7 +3,8 @@ import { useNavigate, createSearchParams, useSearchParams } from 'react-router-d
 import { useState } from 'react';
 
 
-// 페이지 이동 : 로직 재사용
+// 페이지 이동 로직을 재사용하기 위해서 훅으로 구현
+
 export function useCustomMove() {
 
     // state
@@ -14,7 +15,7 @@ export function useCustomMove() {
 
     const [ searchParams, setSearchParams ] = useSearchParams();
 
-    const page = parseInt(searchParams.get('page')) || 1;
+    const page = parseInt(searchParams.get('page')) || 1;  // parseInt(searchParams.get('page'))가 falsy 값이면 1로 기본 설정
 
     const size = parseInt(searchParams.get('size')) || 10;
     
@@ -36,11 +37,11 @@ export function useCustomMove() {
         queryDefault = createSearchParams({ page, size }).toString();
     }
 
-
+    
     // 게시글 목록 조회 페이지 이동
     const moveToList = (pageParams) => {
-
-        console.log('pageParams : ', pageParams);
+        
+        console.log('pageParams : ', pageParams);  // page, size, keyfield, keyword
 
         let queryStr = '';
         if (pageParams) {
