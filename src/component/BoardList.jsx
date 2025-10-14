@@ -138,7 +138,7 @@ const BoardList = () => {
 
                                 return <tr key={post.id}>
                                     {/* <td>{((page - 1) * size) + index + 1}</td> */}
-                                    <td></td>{totalCount - ((page - 1) * size) - index}</td>
+                                    <td>{totalCount - ((page - 1) * size) - index}</td>
                                     <td onClick={() => moveToView(post.id)} style={{cursor: 'pointer'}}>{post.title}</td>
                                     <td>{post.writer}</td>
                                     <td>{post.regDate}</td>
