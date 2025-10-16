@@ -31,7 +31,10 @@ const BoardList = () => {
 
     const [ keyword, setKeyword ]  = useState('');
 
-   const { moveToList, page, size } = useCustomMove();  // page = 1, size = 10
+    const { moveToList, page, size } = useCustomMove();  // page = 1, size = 10
+
+    // 로딩 상태태
+    const [loading, setLoading] = useState(false);
 
     // const [ searchParams, setSearchParams ] = useSearchParams();
 
@@ -99,22 +102,31 @@ const BoardList = () => {
         
     }
 
-
+    // 사용자 경험: 검색 버튼 클릭 시 즉시 결과를 보여줌
+    // 에러 처리: API 실패 시 URL을 업데이트하지 않음
     // 검색 버튼 선택
     const handleClickSearch = () => {
-       
+
+        if (!keyfield || !keyword) {
+            alert("검색 조건을 선택하고 검색어를 입력해주세요.");
+            return;
+        }
+        
+        setLoading(true);
+        
         // 새로운 검색이므로 1페이지부터 시작
         getSearchPostList({ page: 1, size, keyfield, keyword })
             .then(data => {
-                setServerData(data); // 리액트는 상태가 변경되면 화면을 리렌더링한다.
+                setServerData(data); 
+                // 성공 시에만 URL 업데이트
+                moveToList({page: 1, size: size, keyfield: keyfield, keyword: keyword});        
             })
             .catch(error => {
                 console.error("Error : ", error);
             })
-          
-           
-        moveToList({page: 1, size: size, keyfield: keyfield, keyword: keyword});        
-            
+            .finally(() => {
+                setLoading(false);    
+            });
     }
 
     return (
