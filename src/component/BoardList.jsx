@@ -85,7 +85,7 @@ const BoardList = () => {
         // }         
       
 
-    }, [ page, size])
+    }, [ page, size, searchParams ]); // searchParams 추가
 
 
     const handleChanageKeyfield = (e) => {      
