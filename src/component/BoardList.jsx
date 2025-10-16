@@ -42,41 +42,53 @@ const BoardList = () => {
 
    useEffect( () => {    
 
-        const keyfieldParam = searchParams.get("keyfield") || '';     
-       
+        const keyfieldParam = searchParams.get("keyfield") || '';            
         const keywordParam = searchParams.get("keyword") || '';
+
+        // URL 파라미터가 있으면 상태 업데이트
+        if (keyfieldParam !== keyfield) setKeyfield(keyfieldParam);
+        if (keywordParam !== keyword) setKeyword(keywordParam);
         
-        if (keyfieldParam !== '' && keywordParam !== '') {                      
-            getSearchPostList({ page, size, keyfield: keyfieldParam, keyword: keywordParam })
-                    .then(data => {
-                        setServerData(data);          
-                    })
-                    .catch(error => {
-                        console.error("Error : ", error);
-                    })           
-                        
-            setKeyfield(keyfieldParam);            
-            setKeyword(keywordParam);
+       getSearchPostList({ 
+            page, 
+            size, 
+            keyfield: keyfieldParam || keyfield,   //truthy 값
+            keyword: keywordParam || keyword 
+        })
+        .then(data => {
+            setServerData(data);          
+        })
+        .catch(error => {
+            console.error("Error : ", error);
+        });
         
-        }  else {          
-            getSearchPostList({ page, size, keyfield, keyword })
-                    .then(data => {
-                        setServerData(data);          
-                    })
-                    .catch(error => {
-                        console.error("Error : ", error);
-                    })
-        }         
+        // if (keyfieldParam !== '' && keywordParam !== '') {                      
+        //     getSearchPostList({ page, size, keyfield: keyfieldParam, keyword: keywordParam })
+        //             .then(data => {
+        //                 setServerData(data);          
+        //             })
+        //             .catch(error => {
+        //                 console.error("Error : ", error);
+        //             })                      
+        
+        // }  else {          
+        //     getSearchPostList({ page, size, keyfield, keyword })
+        //             .then(data => {
+        //                 setServerData(data);          
+        //             })
+        //             .catch(error => {
+        //                 console.error("Error : ", error);
+        //             })
+        // }         
       
 
     }, [ page, size])
 
 
-    const handleChanageKeyfield = (e) => {       
+    const handleChanageKeyfield = (e) => {      
         
-        setKeyfield(e.target.value);
-
-        setKeyword("");
+        setKeyfield(e.target.value); 
+        setKeyword(""); // 검색 필드 변경 시 키워드 초기화
 
     }
 
